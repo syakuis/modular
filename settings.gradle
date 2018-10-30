@@ -1,0 +1,6 @@
+rootProject.name = 'modular-framework'
+include 'modular-common'
+include 'modular-cache'
+include 'modular-data-jpa'
+include 'modular-context'
+
