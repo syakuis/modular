@@ -1,3 +1,4 @@
 dependencies {
-  compile project(":modular-data-jpa")
+  compile project(":modular-cache")
+  testCompile project(":modular-test")
 }

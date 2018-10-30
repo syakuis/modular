@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  org.modularframework.autoconfigure.EhCacheAutoConfiguration
+  org.modularframework.cache.autoconfigure.EhCacheAutoConfiguration

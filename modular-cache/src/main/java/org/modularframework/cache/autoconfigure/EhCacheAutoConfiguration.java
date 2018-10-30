@@ -1,4 +1,4 @@
-package org.modularframework.autoconfigure;
+package org.modularframework.cache.autoconfigure;
 
 import org.modularframework.cache.bean.factory.MultipleEhCacheManagerFactoryBean;
 import org.modularframework.cache.config.EhCacheProperties;

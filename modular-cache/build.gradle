@@ -2,4 +2,6 @@ dependencies {
   compile project(":modular-common")
   compile 'org.springframework.boot:spring-boot-starter-cache'
   compile 'net.sf.ehcache:ehcache:2.10.3'
+
+  testCompile project(":modular-test")
 }
