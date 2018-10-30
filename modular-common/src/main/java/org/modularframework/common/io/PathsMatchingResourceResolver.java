@@ -1,4 +1,4 @@
-package org.modularframework.core.io;
+package org.modularframework.common.io;
 
 import java.io.IOException;
 import java.util.ArrayList;

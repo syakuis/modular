@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  org.modularframework.cache.autoconfigure.JpaDataAutoConfiguration
+  org.modularframework.data.jpa.autoconfigure.JpaDataAutoConfiguration

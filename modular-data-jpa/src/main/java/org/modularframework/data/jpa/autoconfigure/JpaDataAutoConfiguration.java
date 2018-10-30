@@ -1,4 +1,4 @@
-package org.modularframework.cache.autoconfigure;
+package org.modularframework.data.jpa.autoconfigure;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Configuration
 //@ConditionalOnProperty(name="modular.data.jpa.enable", havingValue="true")
-@EntityScan("org.ainframe")
+@EntityScan("org.modularframework")
 @EnableJpaRepositories("org.modularframework")
 @PropertySource("classpath:config/jpa.properties")
 public class JpaDataAutoConfiguration {

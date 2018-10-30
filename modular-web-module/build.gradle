@@ -1,0 +1,6 @@
+dependencies {
+  compile project(":modular-context")
+  compile project(":modular-data-jpa")
+  testCompile project(":modular-test")
+  testCompile "com.h2database:h2"
+}
