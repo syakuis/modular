@@ -20,7 +20,7 @@ public class CacheModuleContextService {
     this.moduleInitializationService = moduleInitializationService;
   }
 
-  @Cacheable
+  @Cacheable(key = "'store'")
   public ModuleStore getModuleStore() {
     return new ModuleStore(moduleInitializationService.getModules());
   }
