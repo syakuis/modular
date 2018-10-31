@@ -5,4 +5,5 @@ include 'modular-data-jpa'
 include 'modular-context'
 include 'modular-test'
 include 'modular-web-module'
+include 'modular-web-example'
 

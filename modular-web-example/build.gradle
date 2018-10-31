@@ -1,0 +1,10 @@
+dependencies {
+  compile project(":modular-web-module")
+  testCompile project(":modular-test")
+  compile "com.h2database:h2"
+}
+
+bootRepackage {
+  enabled = true
+  mainClass = 'org.syaku.Application'
+}
