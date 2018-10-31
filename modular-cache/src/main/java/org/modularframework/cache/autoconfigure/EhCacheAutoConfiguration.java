@@ -18,13 +18,10 @@ import org.springframework.cache.interceptor.SimpleKeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @author Seok Kyun. Choi. 최석균 (Syaku)
  * @since 16. 7. 22.
  */
-@Slf4j
 @Configuration
 @ConditionalOnClass(name = "net.sf.ehcache.CacheManager")
 @ConditionalOnProperty(name="modular.cache.ehcache.enable", havingValue="true")

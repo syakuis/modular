@@ -19,6 +19,7 @@ import lombok.Setter;
 @Data
 @Setter(AccessLevel.NONE)
 public final class Module implements Serializable {
+  private final String moduleIdx;
   private final String moduleId;
   private final String moduleName;
   private String skin;

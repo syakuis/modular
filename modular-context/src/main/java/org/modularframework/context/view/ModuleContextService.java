@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @CacheConfig(cacheNames = "module-context")
-public class CacheModuleContextService {
+public class ModuleContextService {
   private ModuleInitializationService moduleInitializationService;
 
   @Autowired

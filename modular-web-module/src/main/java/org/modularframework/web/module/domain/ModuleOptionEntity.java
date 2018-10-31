@@ -3,7 +3,6 @@ package org.modularframework.web.module.domain;
 import java.io.Serializable;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 import lombok.*;
 

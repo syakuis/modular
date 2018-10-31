@@ -24,7 +24,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Import(Application.class)
+@EnableModular
 public class ModuleContextTest {
 
   @Configuration
@@ -51,7 +51,7 @@ public class ModuleContextTest {
   private CacheManager cacheManager;
 
   @Autowired
-  private CacheModuleContextService cacheModuleContextService;
+  private ModuleContextService cacheModuleContextService;
 
   @Autowired
   private ModuleContext moduleContext;
@@ -74,6 +74,6 @@ public class ModuleContextTest {
   public void test() {
     ModuleStore moduleStore = cacheModuleContextService.getModuleStore();
     assertEquals(moduleContext.getModule("module"), moduleStore.getModule("module"));
-    assertEquals(moduleContext.getModuleNameByModuleId("module"), moduleStore.getModuleNameByModuleId("module"));
+    assertEquals(moduleContext.getModuleName("module"), moduleStore.getModuleNameByModuleId("module"));
   }
 }
