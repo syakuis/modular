@@ -4,3 +4,8 @@ dependencies {
   testCompile project(":modular-test")
   testCompile "com.h2database:h2"
 }
+
+bootRepackage {
+  enabled = true
+  mainClass = 'org.modularframework.web.module.Application'
+}
