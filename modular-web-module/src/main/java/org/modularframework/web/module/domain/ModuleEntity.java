@@ -9,7 +9,6 @@ import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.modularframework.common.data.enums.YesOrNo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 /**
@@ -45,7 +44,7 @@ public class ModuleEntity implements Serializable {
         name = "sequence_prefix", value = "MODU"),
     }
   )
-  private String id;
+  private String moduleIdx;
 
   @Setter(AccessLevel.NONE)
   @Column(name = "MODULE_ID", nullable = false, unique = true)
@@ -73,9 +72,8 @@ public class ModuleEntity implements Serializable {
   @Temporal(TemporalType.TIMESTAMP)
   private Date creationDate;
 
-  @JsonIgnore
-  @OneToMany(targetEntity = ModuleOptionEntity.class)
-  @JoinColumn(name = "MODULE_IDX")
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval=true)
+  @JoinColumn(name = "MODULE_IDX", nullable = false)
   private List<ModuleOptionEntity> moduleOptionEntities;
 
   @PrePersist

@@ -6,9 +6,7 @@ import org.modularframework.context.view.response.Done;
 import org.modularframework.web.module.domain.ModuleEntity;
 import org.modularframework.web.module.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Seok Kyun. Choi. 최석균 (Syaku)
@@ -22,6 +20,16 @@ public class AdminModuleController {
 
   @GetMapping
   public Done<List<ModuleEntity>> list() {
-    return Done.<List<ModuleEntity>>builder().data(moduleService.list()).build();
+    return Done.<List<ModuleEntity>>builder().data(moduleService.getModules()).build();
+  }
+
+  @PostMapping
+  public Done<ModuleEntity> save(@RequestBody ModuleEntity moduleEntity) {
+    return Done.<ModuleEntity>builder().data(moduleService.saveModule(moduleEntity)).build();
+  }
+
+  @PutMapping(name = "/{moduleId}")
+  public Done<ModuleEntity> save(@PathVariable String moduleId, @RequestBody ModuleEntity moduleEntity) {
+    return Done.<ModuleEntity>builder().data(moduleService.saveModule(moduleEntity)).build();
   }
 }

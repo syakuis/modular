@@ -12,8 +12,8 @@ import org.springframework.data.repository.Repository;
  */
 public interface ModuleRepository extends Repository<ModuleEntity, String> {
     List<ModuleEntity> findAll();
-    ModuleEntity findOne(String id);
+    ModuleEntity findOne(String moduleIdx);
     ModuleEntity findOneByModuleId(String moduleId);
     ModuleEntity save(ModuleEntity moduleEntity);
-    void removeById(String id);
+    void removeByModuleIdx(String moduleIdx);
 }

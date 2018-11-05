@@ -1,1 +1,16 @@
-include::{snippets}/index/curl-request.adoc[]
+= Module Restful API Document
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+[[list]]
+== 목록
+모듈의 목록을 조회한다.
+
+=== 요청
+include::{snippets}/list/http-request.adoc[]
+=== 응답
+include::{snippets}/list/http-response.adoc[]
