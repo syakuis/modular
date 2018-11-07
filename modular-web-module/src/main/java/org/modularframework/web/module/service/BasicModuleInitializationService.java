@@ -63,12 +63,14 @@ public class BasicModuleInitializationService implements ModuleInitializationSer
 
   @Override
   public List<Module> getModules() {
-    List<ModuleEntity> moduleEntities = moduleRepository.findAll();
-    return Lists.newArrayList(Lists.transform(moduleEntities, new Function<ModuleEntity, Module>() {
-      @Override
-      public Module apply(ModuleEntity entity) {
-        return transform(entity);
-      }
-    }));
+//    List<ModuleEntity> moduleEntities = moduleRepository.findAll();
+//    return Lists.newArrayList(Lists.transform(moduleEntities, new Function<ModuleEntity, Module>() {
+//      @Override
+//      public Module apply(ModuleEntity entity) {
+//        return transform(entity);
+//      }
+//    }));
+
+    return null;
   }
 }

@@ -1,12 +1,11 @@
 package org.modularframework.web.module.service;
 
-import java.util.List;
-
-import org.modularframework.context.view.ModuleOption;
 import org.modularframework.web.module.domain.ModuleEntity;
-import org.modularframework.web.module.domain.ModuleOptionEntity;
 import org.modularframework.web.module.repository.ModuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,21 +23,19 @@ public class ModuleService {
     this.moduleRepository = moduleRepository;
   }
 
-  public List<ModuleEntity> getModules() {
-    return moduleRepository.findAll();
+  public Page<ModuleEntity> getPageList(Pageable pageable) {
+    return moduleRepository.findAll(pageable);
   }
 
-  public ModuleEntity getModule(String moduleIdx) {
+  public ModuleEntity getView(String moduleIdx) {
     return moduleRepository.findOne(moduleIdx);
   }
 
-  public ModuleEntity getModuleWithOption(String moduleId) {
-    ModuleEntity result = moduleRepository.findOneByModuleId(moduleId);
-    List<ModuleOptionEntity> moduleEntities = result.getModuleOptionEntities();
-    return result;
+  public ModuleEntity save(ModuleEntity moduleEntity) {
+    return moduleRepository.save(moduleEntity);
   }
 
-  public ModuleEntity saveModule(ModuleEntity moduleEntity) {
-    return moduleRepository.save(moduleEntity);
+  public void delete(String moduleIdx) {
+    moduleRepository.delete(moduleIdx);
   }
 }

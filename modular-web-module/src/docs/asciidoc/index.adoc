@@ -6,11 +6,28 @@
 :toclevels: 4
 :sectlinks:
 
-[[list]]
+[[pageList]]
 == 목록
-모듈의 목록을 조회한다.
 
 === 요청
-include::{snippets}/list/http-request.adoc[]
+include::{snippets}/page-list/http-request.adoc[]
 === 응답
-include::{snippets}/list/http-response.adoc[]
+include::{snippets}/page-list/http-response.adoc[]
+
+[[view]]
+== 보기
+
+=== 요청
+include::{snippets}/view/http-request.adoc[]
+=== 응답
+include::{snippets}/view/http-response.adoc[]
+
+[[save]]
+== 저장
+
+moduleIdx 가 존재하면 수정 없으면 등록으로 처리된다.
+
+=== 요청
+include::{snippets}/save/http-request.adoc[]
+=== 응답
+include::{snippets}/save/http-response.adoc[]

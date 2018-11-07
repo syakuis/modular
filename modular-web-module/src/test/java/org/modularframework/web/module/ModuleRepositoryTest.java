@@ -6,11 +6,8 @@ package org.modularframework.web.module;
  */
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.EntityManager;
@@ -24,11 +21,11 @@ import org.modularframework.web.module.domain.ModuleOptionEntity;
 import org.modularframework.web.module.repository.ModuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.google.common.collect.Lists;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -42,9 +39,7 @@ public class ModuleRepositoryTest {
   private String moduleId;
   private String moduleIdx;
 
-  @Before
-  public void init() {
-    // Given
+  private void initOne() {
     this.moduleId = UUID.randomUUID().toString();
     ModuleEntity moduleEntity = ModuleEntity.builder()
       .moduleId(moduleId).moduleName(moduleId)
@@ -60,9 +55,32 @@ public class ModuleRepositoryTest {
     entityManager.clear();
   }
 
-  @Test
-  public void 모듈과옵션모두를한번에조회하기() {
+  private void initMany(int row) {
+    for (int i = 0; i < row; i++) {
+      String moduleId = UUID.randomUUID().toString();
+      ModuleEntity moduleEntity = ModuleEntity.builder()
+      .moduleId(moduleId).moduleName(moduleId)
+      .moduleOptionEntities(Arrays.asList(
+        ModuleOptionEntity.builder().name("kr").value("한국").build(),
+        ModuleOptionEntity.builder().name("us").build()
+      )).build();
 
+      moduleRepository.save(moduleEntity);
+    }
+  }
+
+  @Test
+  public void 모듈_목록_페이징() {
+    int row = 15;
+    initMany(row);
+
+    Page<ModuleEntity> page = moduleRepository.findAll(new PageRequest(0, 10));
+    assertEquals(row, page.getTotalElements());
+    assertEquals(page.getNumberOfElements(), 10);
+    assertEquals(page.getTotalPages(), 2);
+
+    Page<ModuleEntity> page2 = moduleRepository.findAll(new PageRequest(1, 10));
+    assertEquals(page2.getNumberOfElements(), 5);
   }
 
 
