@@ -3,11 +3,11 @@
 :icons: font
 :source-highlighter: highlightjs
 :toc: left
-:toclevels: 4
+:toclevels: 1
 :sectlinks:
 
 [[pageList]]
-== 목록
+== 페이지 목록
 
 === 요청
 include::{snippets}/page-list/http-request.adoc[]
@@ -31,3 +31,11 @@ moduleIdx 가 존재하면 수정 없으면 등록으로 처리된다.
 include::{snippets}/save/http-request.adoc[]
 === 응답
 include::{snippets}/save/http-response.adoc[]
+
+[[delete]]
+== 삭제
+
+=== 요청
+include::{snippets}/delete/http-request.adoc[]
+=== 응답
+include::{snippets}/delete/http-response.adoc[]

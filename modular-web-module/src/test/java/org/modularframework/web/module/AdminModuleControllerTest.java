@@ -9,11 +9,14 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.UUID;
 
 import org.junit.After;
 import org.junit.Before;
@@ -35,7 +38,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
@@ -91,7 +94,10 @@ public class AdminModuleControllerTest {
 
   @Test
   public void pageList() throws Exception {
-    this.mockMvc.perform(get(PATH))
+    this.mockMvc.perform(get(PATH).param("page", "0"))
+      .andDo(document("pageList", requestParameters(
+        parameterWithName("page").description("페이지 번호, 첫페이지는 0부터 시작한다.")
+      )))
       .andExpect(status().isOk());
   }
 
@@ -115,14 +121,9 @@ public class AdminModuleControllerTest {
       .contentType(MediaType.APPLICATION_JSON_UTF8)).andDo(print()).andDo(new ResultHandler() {
       @Override
       public void handle(MvcResult result) throws Exception {
-        String content = result.getResponse().getContentAsString();
-        Map<String, Object> response = objectMapper.readValue(content, new TypeReference<Map<String, Object>>() {});
-        Object data = response.get("data");
-        if (data instanceof Map) {
-          Map<String, String> module = (Map<String, String>) data;
-          moduleService.delete(module.get("moduleIdx"));
-        }
-
+        JsonNode node = objectMapper.readTree(result.getResponse().getContentAsByteArray());
+        String moduleIdx = node.get("data").get("moduleIdx").asText();
+        moduleService.delete(moduleIdx);
       }
     }).andExpect(status().isOk());
   }
